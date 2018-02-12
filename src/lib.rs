@@ -31,4 +31,13 @@ mod tests {
         let nc = Instruction::SetMaximumSpindleSpeed(2000);
         assert_eq!(to_string(&nc).unwrap(), "G50S2000");
     }
+
+    #[test]
+    fn test_serialize_sequence() {
+        let ncs = vec![
+            Instruction::SetInchUnits,
+            Instruction::SetMaximumSpindleSpeed(2000),
+        ];
+        assert_eq!(to_string(&ncs).unwrap(), "G20\nG50S2000\n");
+    }
 }

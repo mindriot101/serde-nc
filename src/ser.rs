@@ -149,7 +149,7 @@ impl<'a> ser::Serializer for &'a mut Serializer {
     }
 
     fn serialize_seq(self, _len: Option<usize>) -> Result<Self::SerializeSeq> {
-        unimplemented!();
+        Ok(self)
     }
 
     fn serialize_tuple(self, _len: usize) -> Result<Self::SerializeTuple> {
