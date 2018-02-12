@@ -26,6 +26,22 @@ impl<'a> ser::Serializer for &'a mut Serializer {
     type SerializeMap = Self;
     type SerializeStruct = Self;
     type SerializeStructVariant = Self;
+
+    fn serialize_bool(self, v: bool) -> Result<()> {
+        unimplemented!();
+    }
+
+    fn serialize_i8(self, val: i8) -> Result<()> {
+        self.serialize_i64(val as i64)
+    }
+ 
+    fn serialize_i32(self, val: i32) -> Result<()> {
+        self.serialize_i64(val as i64)
+    }
+
+    fn serialize_i64(self, val: i64) -> Result<()> {
+        unimplemented!();
+    }
 }
 
 impl<'a> ser::SerializeStructVariant for &'a mut Serializer {
