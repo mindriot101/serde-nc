@@ -25,4 +25,10 @@ mod tests {
         let nc = Instruction::SetInchUnits;
         assert_eq!(to_string(&nc).unwrap(), "G20");
     }
+
+    #[test]
+    fn test_set_maximum_spindle_speed() {
+        let nc = Instruction::SetMaximumSpindleSpeed(2000);
+        assert_eq!(to_string(&nc).unwrap(), "G50S2000");
+    }
 }

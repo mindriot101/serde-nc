@@ -43,8 +43,9 @@ impl<'a> ser::Serializer for &'a mut Serializer {
         self.serialize_i64(val as i64)
     }
 
-    fn serialize_i64(self, _val: i64) -> Result<()> {
-        unimplemented!();
+    fn serialize_i64(self, val: i64) -> Result<()> {
+        self.output += &val.to_string();
+        Ok(())
     }
 
     fn serialize_u8(self, val: u8) -> Result<()> {
@@ -129,15 +130,22 @@ impl<'a> ser::Serializer for &'a mut Serializer {
 
     fn serialize_newtype_variant<T>(
         self,
-        _name: &'static str,
+        name: &'static str,
         _variant_index: u32,
-        _variant: &'static str,
-        _value: &T,
+        variant: &'static str,
+        value: &T,
     ) -> Result<()>
     where
         T: ?Sized + Serialize,
     {
-        unimplemented!();
+        match (name, variant) {
+            ("Instruction", "SetMaximumSpindleSpeed") => {
+                self.output += "G50S";
+                value.serialize(&mut *self)?;
+            }
+            _ => unimplemented!(),
+        }
+        Ok(())
     }
 
     fn serialize_seq(self, _len: Option<usize>) -> Result<Self::SerializeSeq> {
