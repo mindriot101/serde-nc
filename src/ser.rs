@@ -104,11 +104,17 @@ impl<'a> ser::Serializer for &'a mut Serializer {
 
     fn serialize_unit_variant(
         self,
-        _name: &'static str,
+        name: &'static str,
         _variant_index: u32,
-        _variant: &'static str,
+        variant: &'static str,
     ) -> Result<()> {
-        unimplemented!();
+        match (name, variant) {
+            ("Instruction", "LinearInterp") => {
+                self.output += "Foobar";
+            }
+            _ => unimplemented!(),
+        }
+        Ok(())
     }
 
     fn serialize_newtype_struct<T>(self, _name: &'static str, _value: &T) -> Result<()>
