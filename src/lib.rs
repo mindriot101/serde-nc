@@ -15,8 +15,14 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_it_works() {
-        let nc = Instruction::LinearInterp;
-        assert_eq!(to_string(&nc).unwrap(), "Foobar");
+    fn test_enable_load_monitor() {
+        let nc = Instruction::EnableLoadMonitor;
+        assert_eq!(to_string(&nc).unwrap(), "M216");
+    }
+
+    #[test]
+    fn test_set_inch_units() {
+        let nc = Instruction::SetInchUnits;
+        assert_eq!(to_string(&nc).unwrap(), "G20");
     }
 }

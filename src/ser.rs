@@ -109,8 +109,11 @@ impl<'a> ser::Serializer for &'a mut Serializer {
         variant: &'static str,
     ) -> Result<()> {
         match (name, variant) {
-            ("Instruction", "LinearInterp") => {
-                self.output += "Foobar";
+            ("Instruction", "EnableLoadMonitor") => {
+                self.output += "M216";
+            }
+            ("Instruction", "SetInchUnits") => {
+                self.output += "G20";
             }
             _ => unimplemented!(),
         }
