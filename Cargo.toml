@@ -1,6 +1,6 @@
 [package]
 authors = ["Simon Walker <s.r.walker101@googlemail.com>"]
-name = "serde-nc"
+name = "serde_nc"
 version = "0.1.0"
 
 [dependencies]
